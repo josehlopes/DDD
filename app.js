@@ -1,8 +1,8 @@
-const DDDRepository = require('./_data_acess/dddrepository');
+// const DDDRepository = require('./_data_acess/dddrepository');
 
-const repo = new DDDRepository();
+// const repo = new DDDRepository();
 
-repo.getAll();
+// repo.getAll();
 
 
-repo.getDestination(71);
+// repo.getDestination(71);

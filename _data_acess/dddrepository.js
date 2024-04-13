@@ -23,12 +23,12 @@ class DDDRepository {
           }
         );
       });
-
-      if (row) {
-        console.log("Localização:", row.destination);
-      } else {
-        console.log(`Nenhuma localização encontrada para o DDD: ${ddd}`);
-      }
+      
+    //   if (row) {
+    //     console.log("Localização:", row.destination);
+    //   } else {
+    //     console.log(`Nenhuma localização encontrada para o DDD: ${ddd}`);
+    //   }
 
       return row;
     } catch (err) {
@@ -49,15 +49,14 @@ class DDDRepository {
             });
         });
 
-        if (rows.length > 0) {
-
+        if (rows) {
             rows.forEach(row => {
-                console.log('Registro de DDD:', '(',row.ddd,')', row.destination);
+              console.log("DDD: (" + row.ddd  + ')', "Destino:", '📌' , row.destination);
             });
-        } else {
-            console.log('Nenhum registro de DDD encontrado.');
-        }
-
+        } 
+        // else {
+        //     console.log('Nenhum registro de DDD encontrado.');
+        // }
         return rows;
     } catch (err) {
         console.error(err);

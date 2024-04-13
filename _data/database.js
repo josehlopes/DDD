@@ -8,7 +8,7 @@ class Database {
                 if (err) {
                     console.error(err.message);
                 } else {
-                    console.log('Conectado ao servidor SQLite.');
+                    // console.log('Conectado ao servidor SQLite.');
                 }
             });
             Database.instance = this;
@@ -21,7 +21,7 @@ class Database {
             if (err) {
                 return console.error(err.message);
             }
-            console.log("Conexão SQLite fechada.");
+            // console.log("Conexão SQLite fechada.");
         });
     }
 }

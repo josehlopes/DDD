@@ -11,11 +11,13 @@ var dddapplication = new DDDApplication(dddrepository);
 var dddfacade = new DDDFacade(dddapplication);
 
 const writeddd = prompt("Digite o DDD:");
-const destination = dddfacade.insertDDD(writeddd);
-if (destination) {
+
+dddfacade.insertDDD(writeddd)
+  .then(destination => {
     console.log("Destino do DDD:", destination);
-} else {
-    console.log(`Nenhum destino encontrado para o DDD ${writeddd}`);
-}
+  })
+  .catch(error => {
+    console.error("Erro ao consultar o destino do DDD:", error);
+  });
 
 
