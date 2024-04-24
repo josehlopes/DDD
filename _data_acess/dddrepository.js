@@ -10,7 +10,7 @@ class DDDRepository {
     try {
       const row = await this.db.dddModel.findOne({
         where: {
-          ddd: ddd
+          codigo_area: ddd
         }
       });
       return row;
@@ -19,7 +19,6 @@ class DDDRepository {
       throw err;
     }
   }
-
   async getAll() {
     try {
       const rows = await new Promise((resolve, reject) => {

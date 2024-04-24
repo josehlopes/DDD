@@ -10,14 +10,24 @@ var dddrepository = new DDDRepository();
 var dddapplication = new DDDApplication(dddrepository);
 var dddfacade = new DDDFacade(dddapplication);
 
-const writeddd = prompt("Digite o DDD:");
+// const writeddd = prompt("Digite o DDD:");
 
-dddfacade.insertDDD(writeddd)
+// dddfacade.passDDD(writeddd)
+//   .then(destination => {
+//     console.log("Destino do DDD:", destination);
+//   })
+//   .catch(error => {
+//     console.error("Erro ao consultar o destino do DDD:", error);
+//   });
+
+  const getDDD = prompt("Digite o novo código de aréa:");
+  const getDestination = prompt("Digite a qual estado o código de aréa pertence:");
+
+dddfacade.insert(getDDD, getDestination)
   .then(destination => {
     console.log("Destino do DDD:", destination);
   })
   .catch(error => {
-    console.error("Erro ao consultar o destino do DDD:", error);
+    console.error("Erro ao inserir o destino do DDD:", error);
   });
-
 
