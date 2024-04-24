@@ -1,28 +1,57 @@
-const sqlite3 = require("sqlite3").verbose();
+const { Sequelize } = require('sequelize');
 
 class Database {
     constructor() {
         if (!Database.instance) {
-
-            this.db = new sqlite3.Database('./ddd_repository.db', (err) => {
-                if (err) {
-                    console.error(err.message);
-                } else {
-                    // console.log('Conectado ao servidor SQLite.');
-                }
+            this.sequelize = new Sequelize({
+                dialect: 'sqlite',
+                storage: 'C:/Users/Henrique/Documents/GitHub/DDD/_data/ddd_repository.db'
             });
+
+            this.dddModel = this.sequelize.define('all_ddd', {
+                idDDD: {
+                    type: Sequelize.INTEGER,
+                    primaryKey: true,
+                    autoIncrement: true,
+                },
+                ddd: {
+                    type: Sequelize.TEXT,
+                    allowNull: false
+                },
+                destination: {
+                    type: Sequelize.TEXT,
+                    allowNull: false
+                }
+            },
+                {
+                    timestamps: false
+                }
+            );
+            
+
             Database.instance = this;
         }
         return Database.instance;
     }
-
-    closeDatabase() {
-        this.db.close((err) => {
-            if (err) {
-                return console.error(err.message);
-            }
-            // console.log("Conexão SQLite fechada.");
-        });
+    
+    async connectDatabase() {
+        await this.sequelize.sync();
+        await this.sequelize.authenticate()
+            .then(() => {
+                console.log("Conexão SQLite concluída.");
+            })
+            .catch(err => {
+                console.error("Erro ao conectar:", err.message);
+            });
+    }
+    async closeDatabase() {
+       await this.sequelize.close()
+            .then(() => {
+                console.log("Conexão SQLite fechada.");
+            })
+            .catch(err => {
+                console.error("Erro ao fechar conexão:", err.message);
+            });
     }
 }
 
